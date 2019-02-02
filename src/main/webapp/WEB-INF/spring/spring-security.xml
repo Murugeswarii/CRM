@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+xmlns:beans="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+		
+	<http pattern="/api/**" security="none"/>
+		
+	<http use-expressions="true" >
+		<intercept-url pattern="/showLoginPage*" access="permitAll" />
+		<intercept-url pattern="/home" access="isAuthenticated()"/>
+		<intercept-url pattern="/leaders" access="hasRole('ROLE_MANAGER')"/>
+		<intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern="/employee" access="hasRole('ROLE_EMPLOYEE')"/>
+		<intercept-url pattern="/**" access="isAuthenticated()"/>
+		
+		 <!-- Custom login page  -->
+		<form-login login-page="/showLoginPage" 
+		login-processing-url="/authenticateTheUser" 
+		default-target-url="/home"
+		always-use-default-target="true"
+		authentication-failure-url="/showLoginPage?error=true" />
+		<logout />
+		<access-denied-handler error-page="/accessDenied"/>
+	</http>
+	
+  <authentication-manager>
+		<authentication-provider user-service-ref="myUserDetailsService">
+			<password-encoder hash="bcrypt"/>
+		</authentication-provider>
+	</authentication-manager>
+  
+</beans:beans>
