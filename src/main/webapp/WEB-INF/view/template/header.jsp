@@ -35,6 +35,13 @@ margin-bottom: 1rem;
         color: #ff0000;
         font-weight: bold;
     }
+    .inline {
+    display: inline-block;
+    }
+    .wid100{
+    width:100%;
+    max-width: 100%;
+    }
 </style>
 </head>
 <body>
@@ -50,6 +57,10 @@ margin-bottom: 1rem;
 			<ul class="navbar-nav mr-auto">
 				<sec:authorize access="hasRole('EMPLOYEE')">
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/customer/list">Customers <span class="sr-only">(current)</span></a>
+					</li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/view/restapi/list">API <span class="sr-only">(current)</span></a>
 					</li>
 				</sec:authorize>
 			</ul>

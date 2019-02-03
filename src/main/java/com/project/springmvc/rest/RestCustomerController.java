@@ -43,6 +43,10 @@ public class RestCustomerController {
 	
 	@RequestMapping(value="/customers", method=RequestMethod.PUT)
 	public String updateCustomer(@RequestBody Customer theCustomer){
+		Customer customerSelected = customerService.getCustomer(theCustomer.getId());
+		if(customerSelected == null){
+			throw new CustomerNotFoundException("Customer with id "+ theCustomer.getId() +" is not found.");
+		} 
 		customerService.saveCustomer(theCustomer);
 		return "Customer id "+ theCustomer.getId() +" is updated";
 	}

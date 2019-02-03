@@ -64,12 +64,12 @@ public class CustomerController {
 		}
 		if(StringUtils.isEmpty(customer.getEmail())){
 			bindingResult.rejectValue("email","error.emailIsRequired");
-		} else {
+		} /*else {
 			Customer existingCustomer = customerService.getCustomerByEmail(customer.getEmail());
 			if(existingCustomer != null){
 				bindingResult.rejectValue("email","error.emailAlreadyExists");
 			}
-		}
+		}*/
 	}
 
 	@RequestMapping("/showFormForUpdate")
@@ -84,5 +84,5 @@ public class CustomerController {
 		customerService.deleteCustomer(customerId);
 		return "redirect:/customer/list";
 	}
-
+	
 }
