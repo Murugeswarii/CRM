@@ -11,7 +11,7 @@
 
 	<properties>
 		<springframework.version>5.1.3.RELEASE</springframework.version>
-		<springsecurity.version>5.1.2.RELEASE</springsecurity.version>
+		<springsecurity.version>5.2.10.RELEASE</springsecurity.version>
 		<hibernate.version>5.4.0.Final</hibernate.version>
 		<dbcp.version>1.4</dbcp.version>
 		<!-- Use Java8 -->
